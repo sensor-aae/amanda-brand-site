@@ -1,0 +1,42 @@
+---
+const { title = 'Amanda O. — Quant & Risk Analytics', description = 'Turning data into decisions. Minimal, finance/tech‑inspired portfolio.', } = Astro.props;
+---
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <title>{title}</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <script>
+      (function() {
+        try {
+          const saved = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const initial = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', initial);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="grid-bg">
+    <div class="container">
+      <slot />
+    </div>
+    <script>
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
+  </body>
+</html>

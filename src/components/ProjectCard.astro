@@ -1,0 +1,11 @@
+---
+const { title, summary, tags = [], link = '#' } = Astro.props;
+---
+<article class="card reveal">
+  <h3 style="margin: .2rem 0 0 .1rem;">{title}</h3>
+  <p class="lead" style="margin:.4rem 0 .8rem;">{summary}</p>
+  <div style="margin-bottom:.8rem;">
+    {tags.map(t => <span class="tag">{t}</span>)}
+  </div>
+  <a href={link} target="_blank" rel="noopener" class="cta-link" style="text-decoration:none;font-weight:700;border-bottom:2px solid var(--accent);">View →</a>
+</article>
