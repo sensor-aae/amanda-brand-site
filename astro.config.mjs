@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-// Update `site` after you create the repo (helps with absolute URLs/sitemap)
 export default defineConfig({
-  site: 'https://github.com/sensor-aae/amanda-brand-site',
+  site: 'https://sensor-aae.github.io',   // 👈 your GitHub username site
+  base: '/amanda-brand-site/',            // 👈 your repo name with slashes
 });
